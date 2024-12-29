@@ -37,4 +37,6 @@ public class Examen {
     public void setPreguntas(List<String> preguntas) {
         this.preguntas = preguntas;
     }
+
+
 }

@@ -95,4 +95,22 @@ class ExamenServiceImplTest {
         verify(repository).findAll();
         verify(preguntasRepository).findPreguntasByExamenId(5L);
     }
+
+    @Test
+    void testGuardarExamen() {
+        System.out.println(Datos.EXAMEN);
+        Examen newExamen = Datos.EXAMEN;
+        newExamen.setPreguntas(Datos.PREGUNTAS);
+        System.out.println(newExamen);
+        when(repository.guardar(any(Examen.class))).thenReturn(Datos.EXAMEN);
+        Examen examen = service.guardar(newExamen);
+        assertNotNull(examen);
+        assertEquals("Fisica", examen.getNombre());
+        assertEquals(8L, examen.getId());
+        System.out.println(examen);
+
+        //verify(repository).guardar(Datos.EXAMEN);
+        verify(repository).guardar(any(Examen.class));
+        verify(preguntasRepository).guardarVarias(anyList());
+    }
 }
